@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Input = styled.input`
   width: 50%;
@@ -8,6 +8,6 @@ export const Input = styled.input`
   border-radius: 4px;
 
   ::placeholder {
-    color: #1E3163;
+    color: #0f0f0f;
   }
 `;
