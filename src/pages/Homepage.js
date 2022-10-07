@@ -1,51 +1,52 @@
-import styled from "styled-components";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Unstable_Grid2";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+//import styled from "styled-components";
+import { CategoryCard } from "../components";
+import { Login, SignUp } from "./index";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 export const Homepage = () => {
   return (
-    <Container>
-      <Row xs={1} md={2} className="g-4">
-        {Array.from({ length: 1 }).map((_, idx) => (
-          <Col>
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://media-cdn.tripadvisor.com/media/photo-s/17/f5/39/f7/fooood-at-the-food-department.jpg"
-              />
-              <Card.Body>
-                <Card.Title>Photos</Card.Title>
-                <Card.Text>
-                  Welcome to the creative captures of your favorite food.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-      <Row xs={1} md={2} className="g-4">
-        {Array.from({ length: 1 }).map((_, idx) => (
-          <Col>
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://cdn.vox-cdn.com/thumbor/7HRjMUBf0ObMoA33zNPSYJEKsOE=/0x0:1600x1067/620x465/filters:focal(672x406:928x662):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg"
-              />
-              <Card.Body>
-                <Card.Title>Restaurants</Card.Title>
-                <Card.Text>
-                  Share your dining experience with fellow Foodies!
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <Box
+      sx={{
+        display: "grid",
+        columnGap: 3,
+        rowGap: 1,
+      }}
+    >
+      <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+        <Grid xs={6}>
+          <CategoryCard
+            image="https://media-cdn.tripadvisor.com/media/photo-s/17/f5/39/f7/fooood-at-the-food-department.jpg"
+            title="wrwr"
+            content=" bhjhhfkjj"
+          />
+        </Grid>
+        <Grid xs={6}>
+          <Login />
+        </Grid>
+        <Grid xs={6}>
+          <CategoryCard
+            image="https://cdn.vox-cdn.com/thumbor/7HRjMUBf0ObMoA33zNPSYJEKsOE=/0x0:1600x1067/620x465/filters:focal(672x406:928x662):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg"
+            title="wrwr"
+            content=" bhjhhfkjj"
+          />
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
-const Container = styled.div`
-  margin: 20px;
-`;
+// const Container = styled.div`
+//   margin: 20px;
+// `;

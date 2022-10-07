@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { Button, Input, Title, LinkWord } from "../styled";
+import { Input, Title, LinkWord } from "../styled";
+import * as React from "react";
+import Button from "@mui/material/Button";
+//import Stack from '@mui/material/Stack';
+
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +48,9 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
-          <Button type="submit">Login</Button>
+          <Button variant="contained" color="success">
+            Login
+          </Button>
         </form>
         <SubText>
           Don't have an account yet? Click{" "}
