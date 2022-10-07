@@ -9,7 +9,7 @@ import { PhotoCard } from "../components";
 export const PhotoFeed = () => {
   const dispatch = useDispatch();
   const photos = useSelector(selectPhotos);
-  console.log("Photos", photos);
+  //console.log("Photos", photos);
 
   useEffect(() => {
     dispatch(fetchedPhotos());

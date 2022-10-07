@@ -12,8 +12,8 @@ import { login } from "../store/user/thunks";
 import { selectToken } from "../store/user/selectors";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("chathu@chathu.com");
+  const [password, setPassword] = useState("chathu");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
-          <Button variant="contained" color="success">
+          <Button type="submit " variant="contained" color="success">
             Login
           </Button>
         </form>

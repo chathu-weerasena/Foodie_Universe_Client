@@ -7,6 +7,7 @@ import { CardActionArea } from "@mui/material";
 
 export const CategoryCard = (props) => {
   const { image, title, content } = props;
+
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardActionArea>
