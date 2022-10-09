@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import * as React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { green, yellow } from "@mui/material/colors";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import store from "./store";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: green[500],
+    },
+    secondary: {
+      main: yellow[500],
+    },
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <App />
+      </Router>
+    </ThemeProvider>
   </Provider>
 );
 
