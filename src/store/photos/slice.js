@@ -12,9 +12,12 @@ export const photosSlice = createSlice({
     fetchPhotos: (state, action) => {
       state.photos = action.payload;
     },
+    addNewPhoto: (state, action) => {
+      state.photos.push(action.payload);
+    },
   },
 });
 
-export const { fetchPhotos } = photosSlice.actions;
+export const { fetchPhotos, addNewPhoto } = photosSlice.actions;
 
 export default photosSlice.reducer;
