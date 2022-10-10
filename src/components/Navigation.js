@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectToken } from "../store/user/selectors";
+import { selectToken, selectUser } from "../store/user/selectors";
 import { logOut } from "../store/user/slice";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ export const Navigation = () => {
   const dispatch = useDispatch();
 
   const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
 
   return (
     <Nav>
@@ -28,7 +29,7 @@ export const Navigation = () => {
         {token ? (
           <>
             <button onClick={() => dispatch(logOut())}>Logout</button>
-            <MenuLink to="/profile">Profile</MenuLink>
+            <MenuLink to="/profile">profile</MenuLink>
           </>
         ) : (
           <MenuLink to="/empty3"></MenuLink>

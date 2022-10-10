@@ -1,28 +1,19 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Grid from "@mui/material/Unstable_Grid2";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-//import styled from "styled-components";
-import { CategoryCard } from "../components";
-import { Login } from "./index";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectToken } from "../store/user/selectors";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import Grid from "@mui/material/Unstable_Grid2";
+import Button from "@mui/material/Button";
+
+import styled from "styled-components";
+import { CategoryCard } from "../components";
+import { Login } from "./index";
+import { selectToken } from "../store/user/selectors";
 
 export const Homepage = () => {
   const token = useSelector(selectToken);
   return (
-    <Box className="container" sx={{ flexGrow: 1 }}>
+    <Container>
       <Grid container spacing={3}>
         <Grid item xs={6}>
           <Grid></Grid>
@@ -67,10 +58,14 @@ export const Homepage = () => {
           <Login />
         </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 };
 
-// const Container = styled.div`
-//   margin: 20px;
-// `;
+const Container = styled.div`
+  background: #f5e6d3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

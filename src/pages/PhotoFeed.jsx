@@ -43,7 +43,8 @@ export const PhotoFeed = () => {
 };
 
 const Container = styled.div`
-  margin: 20px;
+  background: #f5e6d3;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;

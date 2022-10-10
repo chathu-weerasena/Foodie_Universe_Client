@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
@@ -84,6 +85,15 @@ export const PhotoCard = (props) => {
 
             {commentBox && <Comments />}
           </CardContent>
+          <Box sx={{ p: 2 }}>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Avatar />
+              <Typography>
+                username <br />
+                posted date
+              </Typography>
+            </Stack>
+          </Box>
         </Grid>
       </Grid>
     </Card>
