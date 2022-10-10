@@ -5,6 +5,8 @@ import { selectToken, selectUser } from "../store/user/selectors";
 import { logOut } from "../store/user/slice";
 import { Link } from "react-router-dom";
 
+import Button from "@mui/material/Button";
+
 export const Navigation = () => {
   const [open, setOpen] = useState(false);
 
@@ -26,10 +28,12 @@ export const Navigation = () => {
       <Menu open={open}>
         <MenuLink to="/empty1"></MenuLink>
         <MenuLink to="/empty2"></MenuLink>
-        {token ? (
+        {user && token ? (
           <>
             <button onClick={() => dispatch(logOut())}>Logout</button>
-            <MenuLink to="/profile">profile</MenuLink>
+            <MenuLink to="/profile">
+              {user.firstName} {user.lastName}
+            </MenuLink>
           </>
         ) : (
           <MenuLink to="/empty3"></MenuLink>
@@ -44,7 +48,7 @@ const MenuLink = styled(Link)`
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  color: #ececec;
+  color: #121211;
   transition: all 0.3s ease-in;
   font-size: 0.9rem;
 
@@ -68,7 +72,7 @@ const Nav = styled.div`
 
 const Logo = styled.a`
   padding: 1rem 0;
-  color: #ececec;
+  color: #33332f;
   text-decoration: none;
   font-weight: 800;
   font-size: 1.7rem;

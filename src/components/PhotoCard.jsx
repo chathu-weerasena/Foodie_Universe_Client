@@ -64,10 +64,6 @@ export const PhotoCard = (props) => {
         </Grid>
         <Grid item xs={8}>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Title
-            </Typography>
-
             <Typography variant="body2" color="text.secondary">
               {description}
               {createdAt}
@@ -108,8 +104,8 @@ export const PhotoCard = (props) => {
             <Stack direction="row" spacing={2} alignItems="center">
               <Avatar />
               <Typography>
-                username <br />
-                posted date
+                {user.firstName} <br />
+                {createdAt}
               </Typography>
             </Stack>
           </Box>
