@@ -38,7 +38,7 @@ export const PhotoCard = (props) => {
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
 
-  const { imageUrl, description, createdAt, updatedAt, userId } = props;
+  const { image, content, createdAt, updatedAt, userId } = props;
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
 
@@ -50,7 +50,7 @@ export const PhotoCard = (props) => {
             component="img"
             alt="green iguana"
             sx={{ width: "100%" }}
-            image={imageUrl}
+            image={image}
           />
           {/* <AspectRatio
             sx={{
@@ -65,7 +65,7 @@ export const PhotoCard = (props) => {
         <Grid item xs={8}>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {description}
+              {content}
               {createdAt}
             </Typography>
 

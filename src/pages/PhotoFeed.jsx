@@ -8,6 +8,7 @@ import { Title } from "../styled";
 import { fetchedPhotos } from "../store/photos/thunks";
 import { selectPhotos } from "../store/photos/selectors";
 import { PhotoCard } from "../components";
+//import { NewsFeed } from "./index";
 
 export const PhotoFeed = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,6 @@ export const PhotoFeed = () => {
           <Title> Photo Feed!</Title>
         </Grid>
       </Grid>
-
       <Grid container sx={{ maxWidth: "980px" }}>
         {!photos
           ? "Loading"
@@ -32,13 +32,14 @@ export const PhotoFeed = () => {
               <PhotoCard
                 key={i}
                 id={photo.id}
-                imageUrl={photo.imageUrl}
-                description={photo.description}
+                image={photo.image}
+                content={photo.content}
                 createdAt={photo.createdAt}
                 firstName={photo.user.firstName}
               />
             ))}
       </Grid>
+      //
     </Container>
   );
 };

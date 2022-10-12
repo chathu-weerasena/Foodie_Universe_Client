@@ -4,6 +4,7 @@ import appStateReducer from "./appState/slice";
 import userReducer from "./user/slice";
 import photosReducer from "./photos/slice";
 import restaurantsReducer from "./restaurants/slice";
+import newsReducer from "./news/slice";
 
 export default configureStore({
   reducer: {
@@ -11,5 +12,6 @@ export default configureStore({
     user: userReducer,
     photos: photosReducer,
     restaurants: restaurantsReducer,
+    news: newsReducer,
   },
 });

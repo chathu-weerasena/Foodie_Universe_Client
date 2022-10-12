@@ -35,16 +35,8 @@ const Comments = () => (
 );
 
 export const RestaurantCard = (props) => {
-  const {
-    id,
-    name,
-    address,
-    description,
-    rating,
-    createdAt,
-    updatedAt,
-    userId,
-  } = props;
+  const { id, name, address, content, image, createdAt, updatedAt, userId } =
+    props;
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
 
@@ -56,7 +48,7 @@ export const RestaurantCard = (props) => {
             component="img"
             alt="green iguana"
             sx={{ width: "100%" }}
-            image="https://www.foodclicks.nl/images/made/uploads/Brew_Secret_Garden_1080_810_90.jpg"
+            image={image}
           />
         </Grid>
 
@@ -67,7 +59,7 @@ export const RestaurantCard = (props) => {
             </Typography>
 
             <Typography variant="body2" color="text.secondary">
-              {description}
+              {content}
               {createdAt}
             </Typography>
             <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>

@@ -33,7 +33,8 @@ export const RestaurantPage = () => {
                 id={restaurant.id}
                 name={restaurant.name}
                 address={restaurant.address}
-                description={restaurant.description}
+                image={restaurant.image}
+                content={restaurant.content}
                 createdAt={restaurant.createdAt}
               />
             ))}
