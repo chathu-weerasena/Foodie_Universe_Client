@@ -5,15 +5,15 @@ import styled from "styled-components";
 import Grid from "@mui/material/Grid";
 import { Title } from "../styled";
 
-import { fetchedPhotos } from "../store/photos/thunks";
-import { selectPhotos } from "../store/photos/selectors";
+import { fetchedPhotos } from "../store/posts/thunks";
+import { selectPhotos } from "../store/posts/selectors";
 import { PhotoCard } from "../components";
 //import { NewsFeed } from "./index";
 
 export const PhotoFeed = () => {
   const dispatch = useDispatch();
   const photos = useSelector(selectPhotos);
-  console.log("Photos", photos);
+  console.log(photos);
 
   useEffect(() => {
     dispatch(fetchedPhotos());
@@ -29,17 +29,9 @@ export const PhotoFeed = () => {
         {!photos
           ? "Loading"
           : photos.map((photo, i) => (
-              <PhotoCard
-                key={i}
-                id={photo.id}
-                image={photo.image}
-                content={photo.content}
-                createdAt={photo.createdAt}
-                firstName={photo.user.firstName}
-              />
+              <PhotoCard key={i} createdAt={photo.createdAt} photo={photo} />
             ))}
       </Grid>
-      //
     </Container>
   );
 };

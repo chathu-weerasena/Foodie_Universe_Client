@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styled from "styled-components";
@@ -8,32 +8,48 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
 import { PhotoFeed, RestaurantPage } from "./index";
+import { fetchedPosts } from "../store/posts/thunks";
 import { AddPhotoForm } from "../components";
-import { selectUser, selectToken } from "../store/user/selectors";
+import { selectPosts } from "../store/posts/selectors";
 
 export const MyProfile = () => {
+  const dispatch = useDispatch();
+  const posts = useSelector(selectPosts);
+  console.log("Posts", posts);
+
   const [addNew, setAddNew] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchedPosts());
+  }, [dispatch]);
 
   return (
     <Container>
-      <Grid item xs={12}>
-        <Title> My Profile</Title>
-      </Grid>
       <Grid>
-        <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
-          <Button
-            size="large"
-            variant="outlined"
-            onClick={() => setAddNew(!addNew)}
-          >
-            Add New Post
-          </Button>
-          {addNew && <AddPhotoForm />}
-        </Stack>
-        <Grid>
-          <RestaurantPage />
+        {/* <Grid item xs={12}>
+          <Title> My Profile</Title>
         </Grid>
+        <Grid container spacing={2} columns={16}>
+          <Grid xs={8}>
+            <Item></Item>
+          </Grid>
+          <Grid xs={8}>
+            <Item>xs=8</Item>
+          </Grid> */}
       </Grid>
+
+      <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
+        <Button
+          size="large"
+          variant="outlined"
+          onClick={() => setAddNew(!addNew)}
+        >
+          Add New FoodPrint
+        </Button>
+      </Stack>
+      <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
+        {addNew && <AddPhotoForm />}
+      </Stack>
     </Container>
   );
 };

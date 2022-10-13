@@ -5,8 +5,13 @@ import { apiUrl } from "../../config/constants";
 
 export const fetchedPhotos = () => {
   return async (dispatch, getState) => {
+    const { token } = getState().user;
     try {
-      const response = await axios.get(`${apiUrl}/photos`);
+      const response = await axios.get(`${apiUrl}/posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const photos = response.data;
       dispatch(fetchPhotos(photos));
     } catch (e) {
@@ -15,20 +20,20 @@ export const fetchedPhotos = () => {
   };
 };
 
-export const addedNewPhoto = (imageUrl, description) => {
+export const addedNewPhoto = (image, content, type, title) => {
   return async (dispatch, getState) => {
-    const { token, profile } = getState().user;
+    const { token } = getState().user;
     try {
       const response = await axios.post(
-        `${apiUrl}/photos/${profile.id}`,
-        { imageUrl, description },
+        `${apiUrl}/photos`,
+        { image, content, type, title },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log("New Photo", response.data);
+      //console.log("New Photo", response.data);
       dispatch(addNewPhoto(response.data));
       dispatch(showMessageWithTimeout("Sucess", true, "Upload suceessful"));
     } catch (e) {

@@ -34,39 +34,42 @@ const Comments = () => (
   />
 );
 
-export const PhotoCard = (props) => {
+export const PhotoCard = ({ photo }) => {
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
 
-  const { image, content, createdAt, updatedAt, userId } = props;
+  //const { createdAt, image, title, photos } = props;
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
 
   return (
     <Card sx={{ marginBottom: "16px" }}>
-      <Grid container>
+      {photo.photos.map((photo) => (
         <Grid item xs={4}>
           <CardMedia
             component="img"
             alt="green iguana"
             sx={{ width: "100%" }}
-            image={image}
+            image={photo.image}
           />
+          {/* <h5> {photo.content} </h5> */}
           {/* <AspectRatio
-            sx={{
-              flex: "100%",
-            }}
-            ratio="4/3"
-            width={{ width: "100%" }}
-          >
-            <img src={imageUrl} style={{ width: "100%" }} />
-          </AspectRatio> */}
+          sx={{
+            flex: "100%",
+          }}
+          ratio="4/3"
+          width={{ width: "100%" }}
+        >
+          <img src={imageUrl} style={{ width: "100%" }} />
+        </AspectRatio> */}
         </Grid>
+      ))}
+      <Grid container>
         <Grid item xs={8}>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {content}
-              {createdAt}
+              <strong>{photo.postType}</strong>
+              {photo.createdAt}
             </Typography>
 
             <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
@@ -105,7 +108,6 @@ export const PhotoCard = (props) => {
               <Avatar />
               <Typography>
                 {user.firstName} <br />
-                {createdAt}
               </Typography>
             </Stack>
           </Box>
