@@ -7,9 +7,9 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
-import { PhotoFeed, RestaurantPage } from "./index";
+import { PhotoFeed, RestaurantPage } from "../pages";
 import { fetchedPosts } from "../store/posts/thunks";
-import { AddPhotoForm } from "../components";
+import { AddPhotoForm, MyPostCard } from "../components";
 import { selectPosts } from "../store/posts/selectors";
 
 export const MyProfile = () => {
@@ -50,6 +50,13 @@ export const MyProfile = () => {
       <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
         {addNew && <AddPhotoForm />}
       </Stack>
+      <Grid>
+        {!posts
+          ? "Loading"
+          : posts.map((post, i) => (
+              <MyPostCard key={i} id={post.id} content={post.content} />
+            ))}
+      </Grid>
     </Container>
   );
 };

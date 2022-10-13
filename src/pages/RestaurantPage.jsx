@@ -5,14 +5,15 @@ import { Title } from "../styled";
 import styled from "styled-components";
 import Grid from "@mui/material/Grid";
 
-import { fetchedRestaurants } from "../store/restaurants/thunks";
-import { selectRestaurants } from "../store/restaurants/selectors";
+import { fetchedRestaurants } from "../store/posts/thunks";
+import { selectRestaurants } from "../store/posts/selectors";
 import { RestaurantCard } from "../components";
+import { NewsFeed } from "./index";
 
 export const RestaurantPage = () => {
   const dispatch = useDispatch();
   const restaurants = useSelector(selectRestaurants);
-  console.log("Restaurants", restaurants);
+  //console.log("Restaurants", restaurants);
 
   useEffect(() => {
     dispatch(fetchedRestaurants());
@@ -24,20 +25,23 @@ export const RestaurantPage = () => {
           <Title> Restaurants!</Title>
         </Grid>
       </Grid>
-      <Grid container sx={{ maxWidth: "980px" }}>
-        {!restaurants
-          ? "Loading"
-          : restaurants.map((restaurant, i) => (
-              <RestaurantCard
-                key={i}
-                id={restaurant.id}
-                name={restaurant.name}
-                address={restaurant.address}
-                image={restaurant.image}
-                content={restaurant.content}
-                createdAt={restaurant.createdAt}
-              />
-            ))}
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Grid container sx={{ maxWidth: "850px" }}>
+            {!restaurants
+              ? "Loading"
+              : restaurants.map((restaurant, i) => (
+                  <RestaurantCard
+                    key={i}
+                    restaurant={restaurant.restaurant}
+                    user={restaurant.user}
+                  />
+                ))}
+          </Grid>
+        </Grid>
+        <Grid item xs={4}>
+          <NewsFeed />
+        </Grid>
       </Grid>
     </Container>
   );

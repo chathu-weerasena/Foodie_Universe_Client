@@ -34,17 +34,13 @@ const Comments = () => (
   />
 );
 
-export const PhotoCard = ({ photo }) => {
-  const user = useSelector(selectUser);
-  const token = useSelector(selectToken);
-
-  //const { createdAt, image, title, photos } = props;
+export const PhotoCard = ({ photo, user }) => {
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
 
   return (
     <Card sx={{ marginBottom: "16px" }}>
-      {photo.photos.map((photo) => (
+      <Grid container>
         <Grid item xs={4}>
           <CardMedia
             component="img"
@@ -63,12 +59,15 @@ export const PhotoCard = ({ photo }) => {
           <img src={imageUrl} style={{ width: "100%" }} />
         </AspectRatio> */}
         </Grid>
-      ))}
-      <Grid container>
+
         <Grid item xs={8}>
           <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {photo.title}
+            </Typography>
+
             <Typography variant="body2" color="text.secondary">
-              <strong>{photo.postType}</strong>
+              <strong>{photo.content}</strong>
               {photo.createdAt}
             </Typography>
 
@@ -87,27 +86,16 @@ export const PhotoCard = ({ photo }) => {
               >
                 Comment
               </Button>
-              {user && token ? (
-                <>
-                  <Button size="small" variant="outlined">
-                    Edit
-                  </Button>
-                  <Button size="small" variant="outlined">
-                    Delete
-                  </Button>
-                </>
-              ) : (
-                " "
-              )}
             </Stack>
 
             {commentBox && <Comments />}
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
-              <Avatar />
+              <Avatar> {user.image}</Avatar>
               <Typography>
-                {user.firstName} <br />
+                {user.firstName} {user.lastName}
+                <br />
               </Typography>
             </Stack>
           </Box>

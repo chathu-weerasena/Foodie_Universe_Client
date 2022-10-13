@@ -30,6 +30,7 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { fetchPhotos, addNewPhoto, fetchPosts } = postsSlice.actions;
+export const { fetchPhotos, fetchRestaurants, fetchNews, fetchPosts } =
+  postsSlice.actions;
 
 export default postsSlice.reducer;

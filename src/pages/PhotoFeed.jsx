@@ -8,12 +8,12 @@ import { Title } from "../styled";
 import { fetchedPhotos } from "../store/posts/thunks";
 import { selectPhotos } from "../store/posts/selectors";
 import { PhotoCard } from "../components";
-//import { NewsFeed } from "./index";
+import { NewsFeed } from "./index";
 
 export const PhotoFeed = () => {
   const dispatch = useDispatch();
   const photos = useSelector(selectPhotos);
-  console.log(photos);
+  //console.log(photos);
 
   useEffect(() => {
     dispatch(fetchedPhotos());
@@ -22,15 +22,22 @@ export const PhotoFeed = () => {
     <Container>
       <Grid>
         <Grid item xs={12}>
-          <Title> Photo Feed!</Title>
+          <Title> Food Prints!</Title>
         </Grid>
       </Grid>
-      <Grid container sx={{ maxWidth: "980px" }}>
-        {!photos
-          ? "Loading"
-          : photos.map((photo, i) => (
-              <PhotoCard key={i} createdAt={photo.createdAt} photo={photo} />
-            ))}
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Grid container sx={{ maxWidth: "850px" }}>
+            {!photos
+              ? "Loading"
+              : photos.map((photo, i) => (
+                  <PhotoCard key={i} photo={photo.photo} user={photo.user} />
+                ))}
+          </Grid>
+        </Grid>
+        <Grid item xs={4}>
+          <NewsFeed />
+        </Grid>
       </Grid>
     </Container>
   );

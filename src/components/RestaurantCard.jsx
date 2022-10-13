@@ -34,9 +34,9 @@ const Comments = () => (
   />
 );
 
-export const RestaurantCard = (props) => {
-  const { id, name, address, content, image, createdAt, updatedAt, userId } =
-    props;
+export const RestaurantCard = ({ restaurant, user }) => {
+  //const { id, name, address, content, image, createdAt, updatedAt, userId } =
+  //props;
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
 
@@ -48,19 +48,19 @@ export const RestaurantCard = (props) => {
             component="img"
             alt="green iguana"
             sx={{ width: "100%" }}
-            image={image}
+            image={restaurant.image}
           />
         </Grid>
 
         <Grid item xs={8}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {name}
+              {restaurant.name}
             </Typography>
 
             <Typography variant="body2" color="text.secondary">
-              {content}
-              {createdAt}
+              <strong> {restaurant.content}</strong>
+              {restaurant.createdAt}
             </Typography>
             <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
               <Button
@@ -77,23 +77,16 @@ export const RestaurantCard = (props) => {
               >
                 Comment
               </Button>
-
-              <Button size="small" variant="outlined">
-                Edit
-              </Button>
-              <Button size="small" variant="outlined">
-                Delete
-              </Button>
             </Stack>
 
             {commentBox && <Comments />}
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
-              <Avatar />
+              <Avatar>{user.image}</Avatar>
               <Typography>
-                username <br />
-                {createdAt}
+                {user.firstName} {user.lastName}
+                <br />
               </Typography>
             </Stack>
           </Box>

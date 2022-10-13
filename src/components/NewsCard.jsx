@@ -4,9 +4,11 @@ import { useSelector } from "react-redux";
 import { styled } from "@mui/material/styles";
 
 import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
+import Avatar from "@mui/material/Avatar";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -21,20 +23,20 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export const NewsCard = (props) => {
-  const { id, title, address, content, end_date } = props;
+export const NewsCard = ({ news, user }) => {
+  //const { id, title, address, content, end_date } = props;
   const [liked, setLiked] = useState(false);
 
   return (
-    <Card sx={{ marginBottom: "16px" }}>
+    <Card sx={{ marginBottom: "0px" }}>
       <Grid>
         <CardContent>
           <Typography variant="h6" color="text.secondary">
-            {title}
+            {news.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {address}
-            {content}
+            {news.address}
+            {news.content}
           </Typography>
           <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
             <Button
@@ -46,6 +48,15 @@ export const NewsCard = (props) => {
             </Button>
           </Stack>
         </CardContent>
+        <Box sx={{ p: 2 }}>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Avatar> {user.image}</Avatar>
+            <Typography>
+              {user.firstName} {user.lastName}
+              <br />
+            </Typography>
+          </Stack>
+        </Box>
       </Grid>
     </Card>
   );
