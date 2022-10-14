@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Image } from "cloudinary-react";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 
 import styled from "styled-components";
 import { Title, Input, Button } from "../styled";
@@ -15,9 +16,11 @@ export const AddPhotoForm = () => {
   const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [type, setType] = useState("");
+  const [content, setContent] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
   const [title, setTitle] = useState("");
+  const [endDate, setEndDate] = useState(moment().format("YYYY-MM-DD"));
 
   const uploadImage = async (e) => {
     const files = e.target.files[0];
@@ -38,11 +41,13 @@ export const AddPhotoForm = () => {
 
   const submit = (event) => {
     event.preventDefault();
-    dispatch(addedNewPhoto(image, description, type, title));
+    dispatch(addedNewPhoto(image, content, name, title));
     setImage("");
-    setDescription("");
-    setType("");
+    setContent("");
+    setName("");
+    setAddress("");
     setTitle("");
+    setEndDate("");
   };
   const options = [
     {
@@ -62,7 +67,7 @@ export const AddPhotoForm = () => {
     <Container>
       <Grid className="addphoto" item xs={10}>
         <Stack direction="column" spacing={2} sx={{ margin: "8px 0" }} xs={6}>
-          <Title> Add new Photo!</Title>
+          <Title> New Post!</Title>
           <form onSubmit={submit}>
             <select>
               <option> Category</option>
@@ -79,15 +84,28 @@ export const AddPhotoForm = () => {
             />
             <br />
             <Input
-              placeholder="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              placeholder="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             />
             <br />
             <Input
-              placeholder="type"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
+              placeholder="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <br />
+            <Input
+              placeholder="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            <br />
+            <Input
+              type="date"
+              placeholder="endDate"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
             />
             <br />
             <Input type="file" onChange={uploadImage} />

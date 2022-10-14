@@ -9,7 +9,12 @@ import Stack from "@mui/material/Stack";
 
 import { PhotoFeed, RestaurantPage } from "../pages";
 import { fetchedPosts } from "../store/posts/thunks";
-import { AddPhotoForm, MyPostCard } from "../components";
+import {
+  AddPhotoForm,
+  PhotoCard,
+  NewsCard,
+  RestaurantCard,
+} from "../components";
 import { selectPosts } from "../store/posts/selectors";
 
 export const MyProfile = () => {
@@ -50,12 +55,44 @@ export const MyProfile = () => {
       <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
         {addNew && <AddPhotoForm />}
       </Stack>
-      <Grid>
-        {!posts
-          ? "Loading"
-          : posts.map((post, i) => (
-              <MyPostCard key={i} id={post.id} content={post.content} />
-            ))}
+
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Grid container sx={{ maxWidth: "850px" }}>
+            {!posts
+              ? "Loading"
+              : posts
+                  .filter(
+                    (post) => post.news === null && post.restaurant === null
+                  )
+                  .map((post, i) => (
+                    <PhotoCard key={i} photo={post.photo} user={post.user} />
+                  ))}
+
+            {!posts
+              ? "Loading"
+              : posts
+                  .filter((post) => post.photo === null && post.news === null)
+                  .map((post, i) => (
+                    <RestaurantCard
+                      key={i}
+                      restaurant={post.restaurant}
+                      user={post.user}
+                    />
+                  ))}
+          </Grid>
+        </Grid>
+        <Grid item xs={4}>
+          {!posts
+            ? "Loading"
+            : posts
+                .filter(
+                  (post) => post.restaurant === null && post.photo === null
+                )
+                .map((post, i) => (
+                  <NewsCard key={i} news={post.news} user={post.user} />
+                ))}
+        </Grid>
       </Grid>
     </Container>
   );
