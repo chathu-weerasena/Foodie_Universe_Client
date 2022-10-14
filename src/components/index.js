@@ -5,4 +5,6 @@ export * from "./PhotoCard";
 export * from "./RestaurantCard";
 export * from "./AddPhotoForm";
 export * from "./NewsCard";
-export * from "./MyPostCard";
+export * from "./MyNewsCard";
+export * from "./MyPhotoCard";
+export * from "./MyRestaurantCard";

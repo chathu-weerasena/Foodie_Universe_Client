@@ -11,9 +11,9 @@ import { PhotoFeed, RestaurantPage } from "../pages";
 import { fetchedPosts } from "../store/posts/thunks";
 import {
   AddPhotoForm,
-  PhotoCard,
-  NewsCard,
-  RestaurantCard,
+  MyPhotoCard,
+  MyNewsCard,
+  MyRestaurantCard,
 } from "../components";
 import { selectPosts } from "../store/posts/selectors";
 
@@ -66,7 +66,7 @@ export const MyProfile = () => {
                     (post) => post.news === null && post.restaurant === null
                   )
                   .map((post, i) => (
-                    <PhotoCard key={i} photo={post.photo} user={post.user} />
+                    <MyPhotoCard key={i} photo={post.photo} user={post.user} />
                   ))}
 
             {!posts
@@ -74,7 +74,7 @@ export const MyProfile = () => {
               : posts
                   .filter((post) => post.photo === null && post.news === null)
                   .map((post, i) => (
-                    <RestaurantCard
+                    <MyRestaurantCard
                       key={i}
                       restaurant={post.restaurant}
                       user={post.user}
@@ -90,7 +90,7 @@ export const MyProfile = () => {
                   (post) => post.restaurant === null && post.photo === null
                 )
                 .map((post, i) => (
-                  <NewsCard key={i} news={post.news} user={post.user} />
+                  <MyNewsCard key={i} news={post.news} user={post.user} />
                 ))}
         </Grid>
       </Grid>
