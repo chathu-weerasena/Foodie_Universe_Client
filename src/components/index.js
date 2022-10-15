@@ -8,3 +8,4 @@ export * from "./NewsCard";
 export * from "./MyNewsCard";
 export * from "./MyPhotoCard";
 export * from "./MyRestaurantCard";
+export * from "./CommentsForm";

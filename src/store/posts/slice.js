@@ -24,13 +24,29 @@ export const postsSlice = createSlice({
     fetchPosts: (state, action) => {
       state.posts = action.payload;
     },
+    deletePost: (state, action) => {
+      const id = action.payload;
+      const newPosts = state.posts.filter((post) => {
+        return post.id !== id;
+      });
+      state.posts = newPosts;
+    },
     addNewPhoto: (state, action) => {
       state.photos.push(action.payload);
+    },
+    addNewComment: (state, action) => {
+      state.post.comments.push(action.payload);
     },
   },
 });
 
-export const { fetchPhotos, fetchRestaurants, fetchNews, fetchPosts } =
-  postsSlice.actions;
+export const {
+  fetchPhotos,
+  fetchRestaurants,
+  fetchNews,
+  fetchPosts,
+  deletePost,
+  addNewComment,
+} = postsSlice.actions;
 
 export default postsSlice.reducer;

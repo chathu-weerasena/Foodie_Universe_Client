@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { styled } from "@mui/material/styles";
 
@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import { selectToken, selectUser } from "../store/user/selectors";
+import { deletedPost } from "../store/posts/thunks";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,7 +28,7 @@ export const MyNewsCard = ({ news, user }) => {
   //const { id, title, address, content, end_date } = props;
   const [liked, setLiked] = useState(false);
 
-  //const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
   return (
@@ -46,7 +47,16 @@ export const MyNewsCard = ({ news, user }) => {
             <Button size="small" variant="outlined">
               Edit
             </Button>
-            <Button size="small" variant="outlined">
+            <Button
+              size="small"
+              variant="outlined"
+              onClick={() =>
+                dispatch(
+                  deletedPost(news.postId),
+                  console.log("ID", news.postId)
+                )
+              }
+            >
               Delete
             </Button>
           </Stack>

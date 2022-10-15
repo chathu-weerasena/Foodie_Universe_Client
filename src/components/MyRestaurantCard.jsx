@@ -15,6 +15,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 import { selectToken, selectUser } from "../store/user/selectors";
+import { CommentsForm } from "../components";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -87,7 +88,7 @@ export const MyRestaurantCard = ({ restaurant, user }) => {
               </Button>
             </Stack>
 
-            {commentBox && <Comments />}
+            {commentBox && <CommentsForm />}
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
