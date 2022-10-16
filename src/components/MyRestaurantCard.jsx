@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -15,6 +15,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 import { selectToken, selectUser } from "../store/user/selectors";
+import { deletedPost } from "../store/posts/thunks";
 import { CommentsForm } from "../components";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -40,6 +41,8 @@ export const MyRestaurantCard = ({ restaurant, user }) => {
   //props;
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
+
+  const dispatch = useDispatch();
 
   return (
     <Card sx={{ marginBottom: "16px" }}>
@@ -82,7 +85,11 @@ export const MyRestaurantCard = ({ restaurant, user }) => {
                 {" "}
                 Edit{" "}
               </Button>
-              <Button size="small" variant="outlined">
+              <Button
+                size="small"
+                variant="outlined"
+                onClick={() => dispatch(deletedPost(restaurant.postId))}
+              >
                 {" "}
                 Delete
               </Button>

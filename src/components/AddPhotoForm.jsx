@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Image } from "cloudinary-react";
 import { useDispatch } from "react-redux";
@@ -20,6 +20,7 @@ export const AddPhotoForm = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [title, setTitle] = useState("");
+  const [postType, setPostType] = useState("");
   const [endDate, setEndDate] = useState(moment().format("YYYY-MM-DD"));
 
   const uploadImage = async (e) => {
@@ -41,25 +42,28 @@ export const AddPhotoForm = () => {
 
   const submit = (event) => {
     event.preventDefault();
-    dispatch(addedNewPhoto(image, content, name, title));
+    dispatch(
+      addedNewPhoto(postType, image, content, name, title, address, endDate)
+    );
     setImage("");
     setContent("");
     setName("");
+    setPostType("");
     setAddress("");
     setTitle("");
     setEndDate("");
   };
   const options = [
     {
-      value: "1",
+      value: 1,
       label: "photos",
     },
     {
-      value: "2",
+      value: 2,
       label: "restaurants",
     },
     {
-      value: "3",
+      value: 3,
       label: "news",
     },
   ];
@@ -69,14 +73,20 @@ export const AddPhotoForm = () => {
         <Stack direction="column" spacing={2} sx={{ margin: "8px 0" }} xs={6}>
           <Title> New Post!</Title>
           <form onSubmit={submit}>
-            <select>
-              <option> Category</option>
+            <select
+              value={postType}
+              onChange={(e) => {
+                setPostType(e.target.value);
+                console.log(postType);
+              }}
+            >
               {options.map((option, i) => (
                 <option key={i} value={option.value}>
                   {option.label}
                 </option>
               ))}
             </select>
+
             <Input
               placeholder="title"
               value={title}

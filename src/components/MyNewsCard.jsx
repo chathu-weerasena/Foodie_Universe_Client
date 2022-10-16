@@ -50,12 +50,10 @@ export const MyNewsCard = ({ news, user }) => {
             <Button
               size="small"
               variant="outlined"
-              onClick={() =>
-                dispatch(
-                  deletedPost(news.postId),
-                  console.log("ID", news.postId)
-                )
-              }
+              onClick={() => {
+                dispatch(deletedPost(news.postId));
+                console.log("ID", news.postId);
+              }}
             >
               Delete
             </Button>

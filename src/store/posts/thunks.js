@@ -96,6 +96,7 @@ export const deletedPost = (id) => {
       });
       console.log("Deleted post", response.data);
       dispatch(deletePost(id));
+      dispatch(fetchedPosts());
     } catch (e) {
       console.log(e.message);
     }
