@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserWithStoredToken } from "./store/user/thunks";
 import { Routes, Route } from "react-router-dom";
-import { Navigation, MessageBox } from "./components";
+import { ResponsiveMenu, Navigation, MessageBox } from "./components";
 import {
   Homepage,
   Login,
@@ -23,6 +23,7 @@ function App() {
 
   return (
     <div>
+      {/* <ResponsiveMenu /> */}
       <Navigation />
       <MessageBox />
       <Routes>

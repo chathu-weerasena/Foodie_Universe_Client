@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 import { addedNewComment } from "../store/posts/thunks";
 
@@ -8,6 +12,7 @@ export const CommentsForm = () => {
   const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const newComment = (comment) => {
     const addedComment = { id: comments.length + 1, comment };
@@ -20,7 +25,7 @@ export const CommentsForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     newComment(comment);
-    dispatch(addedNewComment(comment));
+    dispatch(addedNewComment(comment, id));
   };
   return (
     <div>
@@ -32,24 +37,20 @@ export const CommentsForm = () => {
         );
       })}
       <form onSubmit={handleSubmit}>
-        <h4> Comments</h4>
-
         <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            Comment
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Multiline"
+            multiline
+            maxRows={4}
+            sx={{ width: "100%" }}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-secondary">
+        <Button size="small" type="submit" variant="outlined">
           Add Comment
-        </button>
+        </Button>
       </form>
     </div>
   );

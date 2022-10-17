@@ -31,8 +31,8 @@ export const postsSlice = createSlice({
       });
       state.posts = newPosts;
     },
-    addNewPhoto: (state, action) => {
-      state.photos.push(action.payload);
+    addPost: (state, action) => {
+      state.posts.push(action.payload);
     },
     addNewComment: (state, action) => {
       state.post.comments.push(action.payload);
@@ -46,6 +46,7 @@ export const {
   fetchNews,
   fetchPosts,
   deletePost,
+  addPost,
   addNewComment,
 } = postsSlice.actions;
 

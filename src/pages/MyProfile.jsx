@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import { PhotoFeed, RestaurantPage } from "../pages";
 import { fetchedPosts } from "../store/posts/thunks";
 import {
-  AddPhotoForm,
+  AddPostForm,
   MyPhotoCard,
   MyNewsCard,
   MyRestaurantCard,
@@ -53,7 +53,7 @@ export const MyProfile = () => {
         </Button>
       </Stack>
       <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
-        {addNew && <AddPhotoForm />}
+        {addNew && <AddPostForm />}
       </Stack>
 
       <Grid container spacing={2}>

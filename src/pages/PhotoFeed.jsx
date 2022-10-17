@@ -13,7 +13,7 @@ import { NewsFeed } from "./index";
 export const PhotoFeed = () => {
   const dispatch = useDispatch();
   const photos = useSelector(selectPhotos);
-  //console.log(photos);
+  console.log(photos);
 
   useEffect(() => {
     dispatch(fetchedPhotos());
@@ -31,7 +31,12 @@ export const PhotoFeed = () => {
             {!photos
               ? "Loading"
               : photos.map((photo, i) => (
-                  <PhotoCard key={i} photo={photo.photo} user={photo.user} />
+                  <PhotoCard
+                    key={i}
+                    post={photo.post}
+                    photo={photo.photo}
+                    user={photo.user}
+                  />
                 ))}
           </Grid>
         </Grid>

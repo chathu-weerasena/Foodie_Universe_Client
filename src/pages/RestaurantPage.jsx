@@ -22,7 +22,7 @@ export const RestaurantPage = () => {
     <Container>
       <Grid>
         <Grid item xs={12}>
-          <Title> Restaurants!</Title>
+          <Title> Dining Out!</Title>
         </Grid>
       </Grid>
       <Grid container spacing={2}>

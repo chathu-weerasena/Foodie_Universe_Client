@@ -6,6 +6,16 @@ import { logOut } from "../store/user/slice";
 import { Link } from "react-router-dom";
 
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import SvgIcon from "@mui/material/SvgIcon";
+
+function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}
 
 export const Navigation = () => {
   const [open, setOpen] = useState(false);
@@ -17,9 +27,25 @@ export const Navigation = () => {
 
   return (
     <Nav>
-      <Logo href="/">
-        Foodie<span>Universe</span>
-      </Logo>
+      <HomeIcon color="action" fontSize="large" />
+
+      <Typography
+        variant="h6"
+        noWrap
+        component="a"
+        href="/"
+        sx={{
+          mr: 2,
+          display: { xs: "none", md: "flex" },
+          fontFamily: "monospace",
+          fontWeight: 700,
+          letterSpacing: ".3rem",
+          color: "inherit",
+          textDecoration: "none",
+        }}
+      >
+        FOODIE UNIVERSE
+      </Typography>
       <Hamburger onClick={() => setOpen(!open)}>
         <span />
         <span />
@@ -30,10 +56,19 @@ export const Navigation = () => {
         <MenuLink to="/empty2"></MenuLink>
         {user && token ? (
           <>
-            <button onClick={() => dispatch(logOut())}>Logout</button>
+            <MenuLink to="/photos">FoodPrints</MenuLink>
+            <MenuLink to="/restaurants">DiningOut</MenuLink>
             <MenuLink to="/profile">
               {user.firstName} {user.lastName}
             </MenuLink>
+            <Button
+              href="/"
+              size="small"
+              variant="contained"
+              onClick={() => dispatch(logOut())}
+            >
+              Logout
+            </Button>
           </>
         ) : (
           <MenuLink to="/empty3"></MenuLink>

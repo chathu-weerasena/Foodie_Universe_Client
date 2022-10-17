@@ -44,9 +44,6 @@ export const MyNewsCard = ({ news, user }) => {
           </Typography>
 
           <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
-            <Button size="small" variant="outlined">
-              Edit
-            </Button>
             <Button
               size="small"
               variant="outlined"

@@ -90,10 +90,7 @@ export const MyPhotoCard = ({ photo, user }) => {
               >
                 Comment
               </Button>
-              <Button size="small" variant="outlined">
-                {" "}
-                Edit
-              </Button>
+
               <Button
                 size="small"
                 variant="outlined"
@@ -104,7 +101,7 @@ export const MyPhotoCard = ({ photo, user }) => {
               </Button>
             </Stack>
 
-            {commentBox && <CommentsForm />}
+            {commentBox && <CommentsForm post={photo.postId} />}
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">

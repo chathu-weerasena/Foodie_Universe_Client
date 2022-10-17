@@ -5,6 +5,7 @@ import {
   fetchRestaurants,
   fetchNews,
   deletePost,
+  addPost,
   addNewComment,
 } from "./slice";
 import { showMessageWithTimeout } from "../appState/thunks";
@@ -103,14 +104,44 @@ export const deletedPost = (id) => {
   };
 };
 
-export const addedNewComment = (content) => {
+export const addNewPost = (
+  postType,
+  title,
+  image,
+  content,
+  name,
+  address,
+  endDate
+) => {
   return async (dispatch, getState) => {
     const { token } = getState().user;
-    const { post } = getState().post;
+    try {
+      const response = await axios.post(
+        `${apiUrl}/posts`,
+        { postType, title, image, content, name, address, endDate },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch(addPost(response.data));
+      dispatch(showMessageWithTimeout("Sucess", true, "Upload suceessful"));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
+
+export const addedNewComment = (content, id) => {
+  return async (dispatch, getState) => {
+    const { token } = getState().user;
+    // const { post } = getState().post;
 
     try {
       const response = await axios.post(
-        `${apiUrl}/posts/${post.id}/comments`,
+        `${apiUrl}/posts/${id}/comments`,
         { content },
         {
           headers: {
@@ -118,7 +149,7 @@ export const addedNewComment = (content) => {
           },
         }
       );
-      console.log("New Story", response.data);
+      console.log("New Comment", response.data);
       dispatch(addNewComment(response.data.comment));
       dispatch(showMessageWithTimeout("Success", true, "Added New comment"));
     } catch (e) {

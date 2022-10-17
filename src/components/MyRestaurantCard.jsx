@@ -81,10 +81,7 @@ export const MyRestaurantCard = ({ restaurant, user }) => {
               >
                 Comment
               </Button>
-              <Button size="small" variant="outlined">
-                {" "}
-                Edit{" "}
-              </Button>
+
               <Button
                 size="small"
                 variant="outlined"
