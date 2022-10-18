@@ -51,6 +51,7 @@ export const MyRestaurantCard = ({ restaurant, user }) => {
           <CardMedia
             component="img"
             alt="green iguana"
+            height="250px"
             sx={{ width: "100%" }}
             image={restaurant.image}
           />
@@ -96,7 +97,7 @@ export const MyRestaurantCard = ({ restaurant, user }) => {
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
-              <Avatar>{user.image}</Avatar>
+              <Avatar alt="profile pic" src={user.image} />
               <Typography>
                 {user.firstName} {user.lastName}
                 <br />

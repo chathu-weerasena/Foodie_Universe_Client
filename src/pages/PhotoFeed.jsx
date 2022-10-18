@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import { fetchedPhotos } from "../store/posts/thunks";
 import { selectPhotos } from "../store/posts/selectors";
 import { PhotoCard } from "../components";
 import { NewsFeed } from "./index";
+import { Input } from "@mui/material";
 
 export const PhotoFeed = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export const PhotoFeed = () => {
   useEffect(() => {
     dispatch(fetchedPhotos());
   }, [dispatch]);
+
   return (
     <Container>
       <Grid>
@@ -25,6 +27,7 @@ export const PhotoFeed = () => {
           <Title> Food Prints!</Title>
         </Grid>
       </Grid>
+
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Grid container sx={{ maxWidth: "850px" }}>
@@ -33,6 +36,7 @@ export const PhotoFeed = () => {
               : photos.map((photo, i) => (
                   <PhotoCard
                     key={i}
+                    comments={photo.comments}
                     post={photo.post}
                     photo={photo.photo}
                     user={photo.user}

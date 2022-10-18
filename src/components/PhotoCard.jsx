@@ -9,6 +9,7 @@ import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import AspectRatio from "@mui/joy/AspectRatio";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
@@ -25,19 +26,11 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const Comments = () => (
-  <TextField
-    id="outlined-multiline-flexible"
-    label="Multiline"
-    multiline
-    maxRows={4}
-    sx={{ width: "100%" }}
-  />
-);
-
-export const PhotoCard = ({ photo, user }) => {
+export const PhotoCard = ({ comments, photo, user }) => {
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
+
+  const User = useSelector(selectUser);
 
   return (
     <Card sx={{ marginBottom: "16px" }}>
@@ -46,19 +39,20 @@ export const PhotoCard = ({ photo, user }) => {
           <CardMedia
             component="img"
             alt="green iguana"
+            height="250px"
             sx={{ width: "100%" }}
             image={photo.image}
           />
           {/* <h5> {photo.content} </h5> */}
           {/* <AspectRatio
-          sx={{
-            flex: "100%",
-          }}
-          ratio="4/3"
-          width={{ width: "100%" }}
-        >
-          <img src={imageUrl} style={{ width: "100%" }} />
-        </AspectRatio> */}
+            sx={{
+              flex: "100%",
+            }}
+            ratio="4/3"
+            width={{ width: "100%" }}
+          >
+            <img src={photo.image} style={{ width: "100%" }} />
+          </AspectRatio> */}
         </Grid>
 
         <Grid item xs={8}>
@@ -88,12 +82,19 @@ export const PhotoCard = ({ photo, user }) => {
                 Comment
               </Button>
             </Stack>
+            <Typography variant="body2" color="text.secondary">
+              <ul>
+                {comments.map((comment) => (
+                  <li key={comment.id}>{comment.content}</li>
+                ))}
+              </ul>
+            </Typography>
 
-            {commentBox && <CommentsForm />}
+            {commentBox && <CommentsForm postId={photo.postId} />}
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
-              <Avatar> {user.image}</Avatar>
+              <Avatar alt="profile pic" src={user.image} />
               <Typography>
                 {user.firstName} {user.lastName}
                 <br />

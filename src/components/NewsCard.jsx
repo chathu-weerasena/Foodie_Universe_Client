@@ -36,7 +36,8 @@ export const NewsCard = ({ news, user }) => {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {news.address}
-            {news.content}
+            <br />
+            <strong>{news.content}</strong>
           </Typography>
           <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
             <Button
@@ -50,7 +51,7 @@ export const NewsCard = ({ news, user }) => {
         </CardContent>
         <Box sx={{ p: 2 }}>
           <Stack direction="row" spacing={2} alignItems="center">
-            <Avatar> {user.image}</Avatar>
+            <Avatar alt="profile pic" src={user.image} />
             <Typography>
               {user.firstName} {user.lastName}
               <br />

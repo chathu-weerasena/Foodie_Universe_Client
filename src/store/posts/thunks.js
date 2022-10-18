@@ -11,6 +11,23 @@ import {
 import { showMessageWithTimeout } from "../appState/thunks";
 import { apiUrl } from "../../config/constants";
 
+// export const fetchPosts = () => {
+//   return async (dispatch, getState) => {
+//     const { token } = getState().user;
+//     try {
+//       const response = await axios.get(`${apiUrl}/posts`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+
+//       dispatch(fetchedPosts(response.data.Posts));
+//     } catch (e) {
+//       console.log(e.message);
+//     }
+//   };
+// };
+
 export const fetchedPhotos = () => {
   return async (dispatch, getState) => {
     const { token } = getState().user;
@@ -39,8 +56,8 @@ export const fetchedRestaurants = () => {
         },
       });
 
-      //console.log(response.data);
       dispatch(fetchRestaurants(response.data.postRestaurants));
+      console.log(response.data.postRestaurants);
     } catch (e) {
       console.log(e.message);
     }
@@ -97,7 +114,7 @@ export const deletedPost = (id) => {
       });
       console.log("Deleted post", response.data);
       dispatch(deletePost(id));
-      dispatch(fetchedPosts());
+      //dispatch(fetchedPosts());
     } catch (e) {
       console.log(e.message);
     }
@@ -106,10 +123,10 @@ export const deletedPost = (id) => {
 
 export const addNewPost = (
   postType,
-  title,
   image,
   content,
   name,
+  title,
   address,
   endDate
 ) => {
@@ -118,7 +135,7 @@ export const addNewPost = (
     try {
       const response = await axios.post(
         `${apiUrl}/posts`,
-        { postType, title, image, content, name, address, endDate },
+        { postType, image, content, name, title, address, endDate },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -134,14 +151,14 @@ export const addNewPost = (
   };
 };
 
-export const addedNewComment = (content, id) => {
+export const addedNewComment = (content, postId) => {
   return async (dispatch, getState) => {
     const { token } = getState().user;
     // const { post } = getState().post;
 
     try {
       const response = await axios.post(
-        `${apiUrl}/posts/${id}/comments`,
+        `${apiUrl}/posts/${postId}/comments`,
         { content },
         {
           headers: {

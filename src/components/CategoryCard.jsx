@@ -12,7 +12,7 @@ export const CategoryCard = (props) => {
   const { image, title, content } = props;
 
   return (
-    <Card sx={{ marginBottom: "16px" }}>
+    <Card sx={{ marginBottom: "16px", maxWidth: "800px" }}>
       <Grid container>
         <Grid item xs={6}>
           <CardMedia

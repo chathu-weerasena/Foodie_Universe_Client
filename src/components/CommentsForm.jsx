@@ -7,12 +7,12 @@ import Button from "@mui/material/Button";
 
 import { addedNewComment } from "../store/posts/thunks";
 
-export const CommentsForm = () => {
+export const CommentsForm = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
-  const { id } = useParams();
+  // const { postId } = useParams();
 
   const newComment = (comment) => {
     const addedComment = { id: comments.length + 1, comment };
@@ -25,7 +25,7 @@ export const CommentsForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     newComment(comment);
-    dispatch(addedNewComment(comment, id));
+    dispatch(addedNewComment(comment, postId));
   };
   return (
     <div>

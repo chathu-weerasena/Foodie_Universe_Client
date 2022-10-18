@@ -31,16 +31,14 @@ export const Homepage = () => {
             content="Welcome to the tasty captures of your favorite dishes!"
           />
 
-          <Grid>
-            <CategoryCard
-              image="https://cdn.vox-cdn.com/thumbor/7HRjMUBf0ObMoA33zNPSYJEKsOE=/0x0:1600x1067/620x465/filters:focal(672x406:928x662):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg"
-              title="Dining Journey"
-              content="Welcome to the dining experiences around the globe!"
-            />
-          </Grid>
+          <CategoryCard
+            image="https://cdn.vox-cdn.com/thumbor/7HRjMUBf0ObMoA33zNPSYJEKsOE=/0x0:1600x1067/620x465/filters:focal(672x406:928x662):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg"
+            title="Dining Journey"
+            content="Welcome to the dining experiences around the globe!"
+          />
         </Grid>
 
-        <Grid item xs={5}>
+        <Grid item xs={6}>
           <Login />
         </Grid>
       </Grid>
@@ -52,6 +50,7 @@ const Container = styled.div`
   background: #f5e6d3;
   padding: 20px;
   display: flex;
+  height: 750px;
   flex-direction: column;
   align-items: center;
 `;
