@@ -8,6 +8,7 @@ import {
   addPost,
   addNewComment,
 } from "./slice";
+import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/thunks";
 import { apiUrl } from "../../config/constants";
 
@@ -105,6 +106,7 @@ export const fetchedPosts = () => {
 export const deletedPost = (id) => {
   return async (dispatch, getState) => {
     const { token } = getState().user; //??
+    dispatch(appLoading());
 
     try {
       const response = await axios.delete(`${apiUrl}/posts/${id}`, {
@@ -114,6 +116,7 @@ export const deletedPost = (id) => {
       });
       console.log("Deleted post", response.data);
       dispatch(deletePost(id));
+      dispatch(appDoneLoading());
       //dispatch(fetchedPosts());
     } catch (e) {
       console.log(e.message);

@@ -14,6 +14,12 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
 
 import { selectToken, selectUser } from "../store/user/selectors";
 import { CommentsForm } from "../components";
@@ -82,14 +88,23 @@ export const PhotoCard = ({ comments, photo, user }) => {
                 Comment
               </Button>
             </Stack>
-            <Typography variant="body2" color="text.secondary">
-              <ul>
-                {comments.map((comment) => (
-                  <li key={comment.id}>{comment.content}</li>
-                ))}
-              </ul>
-            </Typography>
-
+            <Stack>
+              {comments.map((comment) => (
+                <List
+                  key={comment.id}
+                  sx={{
+                    width: "100%",
+                    maxWidth: 360,
+                    bgcolor: "background.paper",
+                  }}
+                >
+                  <ListItem disablePadding>{comment.content}</ListItem>
+                </List>
+              ))}
+            </Stack>
+            {/* {comments.map((comment) => (
+                  <ListItemText key={comment.id} primary={comment.content} />
+                ))} */}
             {commentBox && <CommentsForm postId={photo.postId} />}
           </CardContent>
           <Box sx={{ p: 2 }}>

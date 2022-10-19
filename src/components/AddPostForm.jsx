@@ -6,8 +6,13 @@ import moment from "moment";
 
 import styled from "styled-components";
 import { Title, Input, Button } from "../styled";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
 //import CardMedia from "@mui/material/CardMedia";
 
 import { addNewPost } from "../store/posts/thunks";
@@ -73,19 +78,27 @@ export const AddPostForm = () => {
         <Stack direction="column" spacing={2} sx={{ margin: "8px 0" }} xs={6}>
           <Title> New Post!</Title>
           <form onSubmit={submit}>
-            <select
-              value={postType}
-              onChange={(e) => {
-                setPostType(e.target.value);
-                console.log(postType);
-              }}
-            >
-              {options.map((option, i) => (
-                <option key={i} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Post Type</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={postType}
+                label="Post Type"
+                onChange={(e) => {
+                  setPostType(e.target.value);
+                  console.log(postType);
+                }}
+              >
+                {options.map((option, i) => (
+                  <MenuItem key={i} value={option.value}>
+                    {" "}
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
             {postType === "1" ? (
               <>
                 <Input

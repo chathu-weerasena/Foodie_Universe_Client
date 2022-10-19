@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 
 import { addedNewComment } from "../store/posts/thunks";
 
-export const CommentsForm = ({ postId }) => {
+export const CommentsForm = ({ postId, user }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
 
@@ -32,7 +32,7 @@ export const CommentsForm = ({ postId }) => {
       {comments.map((comment) => {
         return (
           <div key={comment.id}>
-            <p> Comment: {comment.comment}</p>
+            <p> {comment.comment}</p>
           </div>
         );
       })}
