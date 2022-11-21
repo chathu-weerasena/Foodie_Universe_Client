@@ -18,16 +18,12 @@ export const NewsFeed = () => {
   }, [dispatch]);
 
   return (
-    <Container>
-      <Grid item xs={6}>
-        <Grid container sx={{ maxWidth: "500px" }}>
-          {!news
-            ? "Loading"
-            : news.map((news, i) => (
-                <NewsCard key={i} news={news.news} user={news.user} />
-              ))}
-        </Grid>
-      </Grid>
-    </Container>
+    <Grid container sx={{ maxWidth: "500px" }}>
+      {!news
+        ? "Loading"
+        : news.map((news, i) => (
+            <NewsCard key={i} news={news.news} user={news.user} />
+          ))}
+    </Grid>
   );
 };

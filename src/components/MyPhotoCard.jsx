@@ -26,16 +26,6 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const Comments = () => (
-  <TextField
-    id="outlined-multiline-flexible"
-    label="Multiline"
-    multiline
-    maxRows={4}
-    sx={{ width: "100%" }}
-  />
-);
-
 export const MyPhotoCard = ({ photo, user }) => {
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -49,6 +39,7 @@ export const MyPhotoCard = ({ photo, user }) => {
           <CardMedia
             component="img"
             alt="green iguana"
+            height="250px"
             sx={{ width: "100%" }}
             image={photo.image}
           />
@@ -96,7 +87,6 @@ export const MyPhotoCard = ({ photo, user }) => {
                 variant="outlined"
                 onClick={() => dispatch(deletedPost(photo.postId))}
               >
-                {" "}
                 Delete
               </Button>
             </Stack>
@@ -105,9 +95,9 @@ export const MyPhotoCard = ({ photo, user }) => {
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
-              <Avatar alt="profile pic" src={user.image} />
+              <Avatar alt="profile pic" src={user?.image} />
               <Typography>
-                {user.firstName} {user.lastName}
+                {user?.firstName} {user?.lastName}
                 <br />
               </Typography>
             </Stack>

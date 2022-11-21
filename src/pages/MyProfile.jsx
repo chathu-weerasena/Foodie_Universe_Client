@@ -30,26 +30,13 @@ export const MyProfile = () => {
 
   return (
     <Container>
-      <Grid>
-        {/* <Grid item xs={12}>
-          <Title> My Profile</Title>
-        </Grid>
-        <Grid container spacing={2} columns={16}>
-          <Grid xs={8}>
-            <Item></Item>
-          </Grid>
-          <Grid xs={8}>
-            <Item>xs=8</Item>
-          </Grid> */}
-      </Grid>
-
       <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
         <Button
           size="large"
           variant="outlined"
           onClick={() => setAddNew(!addNew)}
         >
-          Add New FoodPrint
+          Add New Post
         </Button>
       </Stack>
       <Stack direction="row" spacing={2} sx={{ margin: "8px 0" }}>
@@ -58,29 +45,27 @@ export const MyProfile = () => {
 
       <Grid container spacing={2}>
         <Grid item xs={8}>
-          <Grid container sx={{ maxWidth: "850px" }}>
-            {!posts
-              ? "Loading"
-              : posts
-                  .filter(
-                    (post) => post.news === null && post.restaurant === null
-                  )
-                  .map((post, i) => (
-                    <MyPhotoCard key={i} photo={post.photo} user={post.user} />
-                  ))}
+          {!posts
+            ? "Loading"
+            : posts
+                .filter(
+                  (post) => post.news === null && post.restaurant === null
+                )
+                .map((post, i) => (
+                  <MyPhotoCard key={i} photo={post.photo} user={post.user} />
+                ))}
 
-            {!posts
-              ? "Loading"
-              : posts
-                  .filter((post) => post.photo === null && post.news === null)
-                  .map((post, i) => (
-                    <MyRestaurantCard
-                      key={i}
-                      restaurant={post.restaurant}
-                      user={post.user}
-                    />
-                  ))}
-          </Grid>
+          {!posts
+            ? "Loading"
+            : posts
+                .filter((post) => post.photo === null && post.news === null)
+                .map((post, i) => (
+                  <MyRestaurantCard
+                    key={i}
+                    restaurant={post.restaurant}
+                    user={post.user}
+                  />
+                ))}
         </Grid>
         <Grid item xs={4}>
           {!posts

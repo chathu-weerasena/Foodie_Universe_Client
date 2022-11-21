@@ -10,3 +10,4 @@ export * from "./MyPhotoCard";
 export * from "./MyRestaurantCard";
 //export * from "./ResponsiveMenu";
 export * from "./CommentsForm";
+export * from "./CommentList";

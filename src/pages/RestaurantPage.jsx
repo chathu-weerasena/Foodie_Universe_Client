@@ -26,20 +26,19 @@ export const RestaurantPage = () => {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Grid container sx={{ maxWidth: "850px" }}>
-            {!restaurants
-              ? "Loading"
-              : restaurants.map((restaurant, i) => (
-                  <RestaurantCard
-                    key={i}
-                    restaurant={restaurant.restaurant}
-                    user={restaurant.user}
-                  />
-                ))}
-          </Grid>
+        <Grid item sm={8}>
+          {!restaurants
+            ? "Loading"
+            : restaurants.map((restaurant, i) => (
+                <RestaurantCard
+                  key={i}
+                  restaurant={restaurant.restaurant}
+                  user={restaurant.user}
+                  comments={restaurant.comments}
+                />
+              ))}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item sm={4}>
           <NewsFeed />
         </Grid>
       </Grid>

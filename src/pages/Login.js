@@ -1,8 +1,7 @@
+import Button from "@mui/material/Button";
 import styled from "styled-components";
 import { Input, Title, LinkWord } from "../styled";
 import * as React from "react";
-import Button from "@mui/material/Button";
-//import Stack from '@mui/material/Stack';
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -12,8 +11,8 @@ import { login } from "../store/user/thunks";
 import { selectToken } from "../store/user/selectors";
 
 export const Login = () => {
-  const [email, setEmail] = useState("kevin@kevin.com");
-  const [password, setPassword] = useState("kevin");
+  const [email, setEmail] = useState("chathu@chathu.com");
+  const [password, setPassword] = useState("chathu");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,8 +20,8 @@ export const Login = () => {
   const token = useSelector(selectToken);
 
   useEffect(() => {
-    if (token !== null) {
-      navigate("/");
+    if (token) {
+      navigate("/profile");
     }
   }, [token, navigate]);
 
@@ -53,7 +52,7 @@ export const Login = () => {
           </Button>
         </form>
         <SubText>
-          Don't have an account yet? Click{" "}
+          Don't have an account yet? Click&nbsp;
           <Link to="/signup" style={LinkWord}>
             here
           </Link>{" "}

@@ -13,6 +13,11 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
 
 import { selectToken, selectUser } from "../store/user/selectors";
 import { CommentsForm } from "../components";
@@ -25,19 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const Comments = () => (
-  <TextField
-    id="outlined-multiline-flexible"
-    label="Multiline"
-    multiline
-    maxRows={4}
-    sx={{ width: "100%" }}
-  />
-);
-
-export const RestaurantCard = ({ restaurant, user }) => {
-  //const { id, name, address, content, image, createdAt, updatedAt, userId } =
-  //props;
+export const RestaurantCard = ({ comments, restaurant, user }) => {
   const [commentBox, setCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
 
@@ -79,6 +72,42 @@ export const RestaurantCard = ({ restaurant, user }) => {
               >
                 Comment
               </Button>
+            </Stack>
+            <Stack>
+              <List
+                sx={{
+                  width: "100%",
+                  maxWidth: 360,
+                  bgcolor: "background.paper",
+                }}
+              >
+                {comments.map((comment) => (
+                  <>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar alt="Remy Sharp" src={comment.user.image} />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={comment.user.firstName}
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline" }}
+                              component="span"
+                              variant="body2"
+                              color="text.primary"
+                            >
+                              {}
+                            </Typography>
+                            {comment.content}
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                    <Divider variant="inset" component="li" />
+                  </>
+                ))}
+              </List>
             </Stack>
 
             {commentBox && <CommentsForm postId={restaurant.postId} />}

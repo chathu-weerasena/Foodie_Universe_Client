@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 import { addedNewComment } from "../store/posts/thunks";
@@ -12,13 +14,11 @@ export const CommentsForm = ({ postId, user }) => {
   const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
-  // const { postId } = useParams();
 
   const newComment = (comment) => {
     const addedComment = { id: comments.length + 1, comment };
     const newComments = [...comments, addedComment];
     setComments(newComments);
-    //console.log(newComments);
     setComment("");
   };
 
@@ -28,7 +28,7 @@ export const CommentsForm = ({ postId, user }) => {
     dispatch(addedNewComment(comment, postId));
   };
   return (
-    <div>
+    <>
       {comments.map((comment) => {
         return (
           <div key={comment.id}>
@@ -36,22 +36,30 @@ export const CommentsForm = ({ postId, user }) => {
           </div>
         );
       })}
-      <form onSubmit={handleSubmit}>
-        <div className="input-group mb-3">
+      <form
+        onSubmit={handleSubmit}
+        style={{ width: "100%", marginTop: "16px" }}
+      >
+        <Stack direction="row" spacing={2} alignItems="flex-end">
           <TextField
             id="outlined-multiline-flexible"
-            label="Multiline"
+            label="Your comment"
             multiline
             maxRows={4}
             sx={{ width: "100%" }}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
-        </div>
-        <Button size="small" type="submit" variant="outlined">
-          Add Comment
-        </Button>
+          <Button
+            size="small"
+            type="submit"
+            variant="outlined"
+            sx={{ height: "100%" }}
+          >
+            Add Comment
+          </Button>
+        </Stack>
       </form>
-    </div>
+    </>
   );
 };

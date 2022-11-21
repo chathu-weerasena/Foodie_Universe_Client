@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Image } from "cloudinary-react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
@@ -13,7 +12,6 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
-//import CardMedia from "@mui/material/CardMedia";
 
 import { addNewPost } from "../store/posts/thunks";
 
@@ -51,25 +49,25 @@ export const AddPostForm = () => {
       addNewPost(postType, image, content, name, title, address, endDate)
     );
     setImage("");
-    setContent("");
+    setContent("Fresh Out of the Oven");
     setName("");
     setPostType("");
     setAddress("");
-    setTitle("");
+    setTitle("Test Pizza");
     setEndDate("");
   };
   const options = [
     {
       value: "1",
-      label: "photos",
+      label: "Food Print",
     },
     {
       value: "2",
-      label: "restaurants",
+      label: "Dining Out",
     },
     {
       value: "3",
-      label: "news",
+      label: "News",
     },
   ];
   return (

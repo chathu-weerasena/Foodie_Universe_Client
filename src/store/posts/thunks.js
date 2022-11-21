@@ -145,8 +145,8 @@ export const addNewPost = (
           },
         }
       );
-
-      dispatch(addPost(response.data));
+      // console.log("response post", response);
+      dispatch(addPost(response.data.addedPost));
       dispatch(showMessageWithTimeout("Sucess", true, "Upload suceessful"));
     } catch (e) {
       console.log(e.message);

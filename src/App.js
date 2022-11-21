@@ -1,10 +1,8 @@
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserWithStoredToken } from "./store/user/thunks";
-import { Routes, Route } from "react-router-dom";
-import { ResponsiveMenu, Navigation, MessageBox } from "./components";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Navigation, MessageBox } from "./components";
 import {
   Homepage,
   Login,
@@ -13,9 +11,22 @@ import {
   RestaurantPage,
   MyProfile,
 } from "./pages";
+import { selectToken } from "./store/user/selectors";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    if (!token && location.pathname !== "/signup") {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());

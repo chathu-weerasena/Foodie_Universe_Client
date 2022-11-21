@@ -1,13 +1,19 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToken, selectUser } from "../store/user/selectors";
 import { logOut } from "../store/user/slice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 import SvgIcon from "@mui/material/SvgIcon";
+import Popover from "@mui/material/Popover";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 
 function HomeIcon(props) {
   return (
@@ -18,34 +24,53 @@ function HomeIcon(props) {
 }
 
 export const Navigation = () => {
-  const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    setAnchorEl(null);
+  }, [location.pathname]);
+
+  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
 
+  const handleAvatarClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const userMenuOpen = Boolean(anchorEl);
+  const userMenuId = userMenuOpen ? "simple-popover" : undefined;
+
   return (
     <Nav>
-      <HomeIcon color="action" fontSize="large" />
-
-      <Typography
-        variant="h6"
-        noWrap
-        component="a"
-        href="/"
-        sx={{
-          mr: 2,
-          display: { xs: "none", md: "flex" },
-          fontFamily: "monospace",
-          fontWeight: 700,
-          letterSpacing: ".3rem",
-          color: "inherit",
-          textDecoration: "none",
-        }}
-      >
-        FOODIE UNIVERSE
-      </Typography>
+      <Stack direction="row" spacing={2} alignItems="center">
+        <HomeIcon color="action" fontSize="large" />
+        <Typography
+          variant="h6"
+          noWrap
+          component="a"
+          href="/"
+          sx={{
+            mr: 2,
+            display: { xs: "none", md: "flex" },
+            fontFamily: "monospace",
+            fontWeight: 700,
+            letterSpacing: ".3rem",
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
+          FOODIE UNIVERSE
+        </Typography>
+      </Stack>
       <Hamburger onClick={() => setOpen(!open)}>
         <span />
         <span />
@@ -58,17 +83,50 @@ export const Navigation = () => {
           <>
             <MenuLink to="/photos">FoodPrints</MenuLink>
             <MenuLink to="/restaurants">DiningOut</MenuLink>
-            <MenuLink to="/profile">
-              {user.firstName} {user.lastName}
-            </MenuLink>
-            <Button
+            <Avatar
+              alt={`${user.firstName} ${user.lastName}`}
+              src={user?.image}
+              aria-describedby={userMenuId}
+              onClick={handleAvatarClick}
+            />
+
+            <Popover
+              id={userMenuId}
+              open={userMenuOpen}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+            >
+              <List>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    component="button"
+                    onClick={() => navigate("/profile")}
+                  >
+                    <ListItemText primary="My Profile" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    component="button"
+                    onClick={() => dispatch(logOut())}
+                  >
+                    <ListItemText primary="Logout" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </Popover>
+            {/* <Button
               href="/"
               size="small"
               variant="contained"
               onClick={() => dispatch(logOut())}
             >
               Logout
-            </Button>
+            </Button> */}
           </>
         ) : (
           <MenuLink to="/empty3"></MenuLink>

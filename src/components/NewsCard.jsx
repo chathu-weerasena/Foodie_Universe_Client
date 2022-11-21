@@ -24,11 +24,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const NewsCard = ({ news, user }) => {
-  //const { id, title, address, content, end_date } = props;
   const [liked, setLiked] = useState(false);
 
   return (
-    <Card sx={{ marginBottom: "0px" }}>
+    <Card sx={{ marginBottom: "0px", width: "100%", mb: "16px" }}>
       <Grid>
         <CardContent>
           <Typography variant="h6" color="text.secondary">

@@ -25,11 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const MyNewsCard = ({ news, user }) => {
-  //const { id, title, address, content, end_date } = props;
-  const [liked, setLiked] = useState(false);
-
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
 
   return (
     <Card sx={{ marginBottom: "0px" }}>
@@ -58,9 +54,9 @@ export const MyNewsCard = ({ news, user }) => {
         </CardContent>
         <Box sx={{ p: 2 }}>
           <Stack direction="row" spacing={2} alignItems="center">
-            <Avatar alt="profile pic" src={user.image} />
+            <Avatar alt="profile pic" src={user?.image} />
             <Typography>
-              {user.firstName} {user.lastName}
+              {user?.firstName} {user?.lastName}
               <br />
             </Typography>
           </Stack>

@@ -29,22 +29,20 @@ export const PhotoFeed = () => {
       </Grid>
 
       <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Grid container sx={{ maxWidth: "850px" }}>
-            {!photos
-              ? "Loading"
-              : photos.map((photo, i) => (
-                  <PhotoCard
-                    key={i}
-                    comments={photo.comments}
-                    post={photo.post}
-                    photo={photo.photo}
-                    user={photo.user}
-                  />
-                ))}
-          </Grid>
+        <Grid item sm={8}>
+          {!photos
+            ? "Loading"
+            : photos.map((photo, i) => (
+                <PhotoCard
+                  key={i}
+                  comments={photo.comments}
+                  post={photo.post}
+                  photo={photo.photo}
+                  user={photo.user}
+                />
+              ))}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item sm={4}>
           <NewsFeed />
         </Grid>
       </Grid>

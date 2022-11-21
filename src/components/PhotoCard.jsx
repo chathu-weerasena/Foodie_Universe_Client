@@ -12,17 +12,15 @@ import CardMedia from "@mui/material/CardMedia";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 
-import { selectToken, selectUser } from "../store/user/selectors";
-import { CommentsForm } from "../components";
+import { selectUser } from "../store/user/selectors";
+import { CommentsForm, CommentList } from "../components";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -88,24 +86,6 @@ export const PhotoCard = ({ comments, photo, user }) => {
                 Comment
               </Button>
             </Stack>
-            <Stack>
-              {comments.map((comment) => (
-                <List
-                  key={comment.id}
-                  sx={{
-                    width: "100%",
-                    maxWidth: 360,
-                    bgcolor: "background.paper",
-                  }}
-                >
-                  <ListItem disablePadding>{comment.content}</ListItem>
-                </List>
-              ))}
-            </Stack>
-            {/* {comments.map((comment) => (
-                  <ListItemText key={comment.id} primary={comment.content} />
-                ))} */}
-            {commentBox && <CommentsForm postId={photo.postId} />}
           </CardContent>
           <Box sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
@@ -118,6 +98,50 @@ export const PhotoCard = ({ comments, photo, user }) => {
           </Box>
         </Grid>
       </Grid>
+      {commentBox && (
+        <Grid container sx={{ background: "#fafafa" }}>
+          <Grid xs={12}>
+            <Stack>
+              <List
+                sx={{
+                  width: "100%",
+                  bgColor: "background.paper",
+                }}
+              >
+                {comments.map((comment) => (
+                  <>
+                    <ListItem key={comment.id} alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar alt="Remy Sharp" src={comment.user.image} />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={comment.user.firstName}
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline" }}
+                              component="span"
+                              variant="body2"
+                              color="text.primary"
+                            >
+                              {}
+                            </Typography>
+                            {comment.content}
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                    <Divider variant="inset" component="li" />
+                  </>
+                ))}
+                <ListItem alignItems="flex-start">
+                  <CommentsForm postId={photo.postId} />
+                </ListItem>
+              </List>
+            </Stack>
+          </Grid>
+        </Grid>
+      )}
     </Card>
   );
 };

@@ -1,26 +1,12 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import Grid from "@mui/material/Unstable_Grid2";
-import Button from "@mui/material/Button";
 import styled from "styled-components";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Avatar from "@mui/material/Avatar";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 
 import { CategoryCard } from "../components";
 import { Login } from "./index";
-import { selectToken } from "../store/user/selectors";
 
 export const Homepage = () => {
-  const token = useSelector(selectToken);
   return (
     <Container>
       <Grid container spacing={2}>
