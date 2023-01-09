@@ -1,6 +1,6 @@
 # Foodie Universe 
 
-Find the deployed version here <>
+Find the deployed version here https://foodieuniverse.netlify.app/
 
 Social Media Platform for the Foodies.
 
