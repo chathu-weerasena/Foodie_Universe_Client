@@ -42,31 +42,35 @@ Currently : Improving the basic version with TypeScript for future enhancements.
 </p>
 
 
-## SETUP How to use this template
 
-1. Create a new project based on this template using the `Use this template` button
+ UML Diagram
+ ![Screenshot 2023-01-09 at 10 15 10](https://user-images.githubusercontent.com/106069963/211275728-ac10847c-03a4-4f90-a9f0-c28c420d22b0.png)
 
-![HOW_TO_USE](https://user-images.githubusercontent.com/20372832/77003323-70966180-695d-11ea-8abe-b362d57135f3.gif)
 
-2. Clone the app
+
+Project Screenshots
+
+![Screenshot 2023-01-09 at 10 23 49](https://user-images.githubusercontent.com/106069963/211276158-bf11ce63-ee39-4770-945e-d20025a02f14.png)
+
+1. clone this project
 
 ```
 git clone git@github.com:YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git
 ```
 
-3. cd into your project
+2. cd into your project
 
 ```
 cd YOUR_PROJECT_NAME
 ```
 
-4. install dependencies
+3. install dependencies
 
 ```
 npm install
 ```
 
-5. Start development server with npm start
+4. Start development server with npm start
 
 ```
 npm start
