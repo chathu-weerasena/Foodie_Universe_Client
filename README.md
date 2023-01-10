@@ -52,8 +52,19 @@ Project Screenshots
 
 ![Screenshot 2023-01-09 at 10 23 49](https://user-images.githubusercontent.com/106069963/211276158-bf11ce63-ee39-4770-945e-d20025a02f14.png)
 
-1. clone this project
 
+![Screenshot 2023-01-10 at 14 19 42](https://user-images.githubusercontent.com/106069963/211562524-18aeae7c-90eb-4761-a0a9-49f87a89befa.png)
+
+![Screenshot 2023-01-10 at 14 21 09](https://user-images.githubusercontent.com/106069963/211562770-d6eba1c7-dcfb-4f99-b59c-5318f0755e72.png)
+
+
+![Screenshot 2023-01-10 at 14 22 35](https://user-images.githubusercontent.com/106069963/211563026-d10205aa-9cd0-418c-af62-51c1ebdc12b4.png)
+
+
+## How to use this project:
+
+
+1. Clone the app
 ```
 git clone git@github.com:YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git
 ```
