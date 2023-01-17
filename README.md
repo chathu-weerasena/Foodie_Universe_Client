@@ -2,15 +2,11 @@
 
 Find the deployed version here https://foodieuniverse.netlify.app/
 
-Social Media Platform for the Foodies.
+Social Media Platform for Foodies.
 
 Basic version has two sections. One Section to share their dining out experience. Second section to be creative in their food journey. I have created one section here for food captures. 
 
-In future : I want to figure out how to show the content which is relevant for the user engagements. 
-I Want to implement another section to the creative section, which contains recipes, tested recipes, and different food experiences such as new recipes. 
-
-Currently : Improving the basic version with TypeScript for future enhancements.
-
+In future : Design a Home page to show all the posts. Add a filter to search relevant posts. Develop a logic to improve News Section. 
 
 ## Tech Stack:
 
