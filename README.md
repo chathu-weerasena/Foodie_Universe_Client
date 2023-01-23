@@ -6,7 +6,10 @@ Social Media Platform for Foodies.
 
 Basic version has two sections. One Section to share their dining out experience. Second section to be creative in their food journey. I have created one section here for food captures. 
 
-In future : Design a Home page to show all the posts. Add a filter to search relevant posts. Develop a logic to improve News Section. 
+In future : I would like implement a Translate option separately for comments and for post. 
+Add Post option, Delete post option in every section for user’s own posts.   
+Home Page. 
+Settings section to change user information. 
 
 ## Tech Stack:
 
