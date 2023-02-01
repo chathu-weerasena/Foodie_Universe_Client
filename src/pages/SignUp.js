@@ -11,10 +11,10 @@ import { signUp } from "../store/user/thunks";
 import { selectToken } from "../store/user/selectors";
 
 export const SignUp = () => {
-  const [firstName, setFirstName] = useState("Gordon");
-  const [lastName, setLastName] = useState("Ramsay");
-  const [email, setEmail] = useState("gordon@gordon.com");
-  const [password, setPassword] = useState("gordon");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
 
   const dispatch = useDispatch();
