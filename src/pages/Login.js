@@ -11,8 +11,8 @@ import { login } from "../store/user/thunks";
 import { selectToken } from "../store/user/selectors";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("chathu@chathu.com");
+  const [password, setPassword] = useState("chathu");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
